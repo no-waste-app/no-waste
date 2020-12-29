@@ -6,14 +6,13 @@ build:
     image: node:12
     script:
         - echo "Building gui app"
-        - cd no-waste-gui
-        - npm install
-        - npm run build
+        - cd ui
+        - yarn install
+        - yarn build
 test:
     stage: test
     image: node:12
     script:
         - echo "Testing"
-        - cd no-waste-gui
-        - npm install
-        - npm test
+        - cd ui
+        - yarn test
