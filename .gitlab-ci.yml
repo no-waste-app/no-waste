@@ -11,7 +11,7 @@ build:
         - yarn build
 test:
     stage: test
-    image: node:12
+    image: node:14
     script:
         - echo "Testing"
         - cd ui
