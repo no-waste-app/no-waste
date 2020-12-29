@@ -5,7 +5,7 @@ build:
     stage: build
     image: node:12
     script:
-        - echo "Building gui app"
+        - echo "Building UI app"
         - cd ui
         - yarn install
         - yarn build
@@ -15,4 +15,5 @@ test:
     script:
         - echo "Testing"
         - cd ui
+        - yarn install
         - yarn test
