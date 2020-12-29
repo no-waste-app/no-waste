@@ -4,7 +4,7 @@ stages:
 build: 
     stage: build
     script:
-        -echo "Building app"
+        - echo "Building app"
         - npm run build
 test:
     stage: test
