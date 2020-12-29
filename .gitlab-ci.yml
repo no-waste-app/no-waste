@@ -15,4 +15,5 @@ test:
     script:
         - echo "Testing"
         - cd no-waste-gui
+        - npm install
         - npm test
