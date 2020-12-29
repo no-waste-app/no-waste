@@ -3,12 +3,14 @@ stages:
     - test
 build: 
     stage: build
+    image: node
     script:
         - echo "Building gui app"
         - cd no-waste-gui
         - npm run build
 test:
     stage: test
+    image: node
     script:
         - echo "Testing"
         - cd no-waste-gui
