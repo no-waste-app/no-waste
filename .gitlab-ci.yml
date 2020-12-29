@@ -4,10 +4,12 @@ stages:
 build: 
     stage: build
     script:
-        - echo "Building app"
+        - echo "Building gui app"
+        - cd no-waste-gui
         - npm run build
 test:
     stage: test
     script:
         - echo "Testing"
+        - cd no-waste-gui
         - npm test
