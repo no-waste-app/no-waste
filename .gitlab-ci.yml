@@ -16,4 +16,5 @@ test:
         - echo "Testing"
         - cd ui
         - yarn install
+        - yarn lint
         - yarn test
