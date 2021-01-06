@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Layout, Menu, Typography } from "antd";
+import { CompleteProducts } from "./CompleteProducts";
 
-function App() {
+const { Title } = Typography;
+const { Header, Footer, Content } = Layout;
+
+function App(): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Layout className={"App"}>
+      <Header className={"App-header"}>
+        <Menu
+          className={"App-header-menu"}
+          mode="horizontal"
+          defaultSelectedKeys={["home"]}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Menu.Item key="home">Home</Menu.Item>
+          <Menu.Item key="recipes">Recipes</Menu.Item>
+          <Menu.Item key="about">About</Menu.Item>
+        </Menu>
+      </Header>
+      <Content className={"App-content"}>
+        <Title style={{ textAlign: "center" }}>No Waste</Title>
+        <CompleteProducts />
+      </Content>
+      <Footer className={"App-footer"}>Built by Johny Inc.</Footer>
+    </Layout>
   );
 }
 
