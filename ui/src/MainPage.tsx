@@ -12,7 +12,6 @@ export function MainPage(): JSX.Element {
   const [products, setProducts] = useState([] as string[]);
 
   const onSelect = (value: string) => {
-    console.log("onSelect", value);
     setProducts([...products, value]);
   };
 

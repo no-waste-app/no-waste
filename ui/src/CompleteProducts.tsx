@@ -15,10 +15,6 @@ export const CompleteProducts: React.FC<Props> = ({ onSelect }: Props) => {
     setOptions(value ? await searchResult(value) : []);
   };
 
-  // const onSelect = (value: string) => {
-  //   console.log("onSelect", value);
-  // };
-
   return (
     <AutoComplete
       dropdownMatchSelectWidth={252}
@@ -43,7 +39,7 @@ const searchResult = async (query: string) => {
   return (resultJson as string[]).map((item: string) => {
     return {
       value: item,
-      label: <div>{item}</div>,
+      label: <div role={"result"}>{item}</div>,
     };
   });
 };
