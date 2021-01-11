@@ -1,0 +1,19 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+metadata:
+  name: no-waste
+build:
+  artifacts:
+  - image: ghcr.io/no-waste-app/no-waste/backend-mock
+    context: ui/tools/backend
+    docker:
+      dockerfile: Dockerfile
+  - image: ghcr.io/no-waste-app/no-waste/ui
+    context: ui
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - ui/k8s/deployment.yaml
+    - ui/tools/backend/k8s/deployment.yaml
