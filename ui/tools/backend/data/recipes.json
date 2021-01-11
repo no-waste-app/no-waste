@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Stove Pot Roast With Mashed Potatoes",
+    "imgUrl": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F949315.jpg",
+    "description": "Wonderful flavors make the meat the star of the dish by combining simple ingredients for a mouth-watering meal. Our southern family has passed this recipe down for many years and enjoyed many memories dining on this delicious home-cooked classic. Save broth from roast to make a delicious gravy using flour or cornstarch, whichever is preferred.",
+    "ingredients": ["Pot Roast:", "1 (3 pound) beef chuck roast", "salt and ground black pepper to taste", "4 (10.5 ounce) cans condensed beef broth (such as Campbell's®)", "1 cup water", "1 white onion, cut into large wedges", "5 cloves garlic", "1 (16 ounce) package carrots, peeled", "1 sprig fresh rosemary", "Mashed Potatoes:", "5 pounds Yukon Gold potatoes, peeled and diced", "1 (12 ounce) can evaporated milk, or as needed", "½ cup butter ", "salt to taste"]
+  },
+  {
+    "title": "Taco Meat",
+    "imgUrl": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5281437.jpg",
+    "description": "This recipe makes just the taco meat. You have to buy everything else, of course. Make a big batch and use for a multiple of different meals: add to bean burritos for a more hearty and tasty burrito, or add a can of beans (kidney, red, or pinto) and use for Frito® Pie, Navajo tacos, or taco salad.",
+    "ingredients": ["1 pound lean ground beef", "½ teaspoon onion powder", "½ teaspoon garlic salt", "½ teaspoon celery salt", "½ teaspoon ground cumin", "1 (8 ounce) can tomato sauce, or more to taste"]
+  },
+  {
+    "title": "Instant Pot® Beef-Stuffed Peppers",
+    "imgUrl": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F6125310.jpg",
+    "description": "Since today's electric pressure cookers are so versatile, you can make versatile recipes in them such as these stuffed bell peppers. Top your bell peppers with your favorite garnish, such as pico de gallo. The stuffing can also be used for taco salads as well as tacos or burritos.",
+    "ingredients": ["1 tablespoon olive oil", "1 pound lean ground beef ", "1 medium onion, diced", "1½ cups water", "1 (6 ounce) can tomato paste", "1 (1.25 ounce) package taco seasoning mix ", "4 green bell peppers, tops and seeds removed"]
+  },
+  {
+    "title": "Original Nestle® Toll House Chocolate Chip Cookies",
+    "imgUrl": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F4109813.jpg",
+    "description": "This famous classic American cookie is a treat no matter what the age or occasion. Enjoy it with a glass of cold milk.",
+    "ingredients": ["2¼ cups all-purpose flour", "1 teaspoon baking soda", "1 teaspoon salt", "1 cup butter, softened ", "¾ cup granulated sugar", "¾ cup packed brown sugar", "1 teaspoon vanilla extract", "2 large eggs", "2 cups NESTLE® TOLL HOUSE® Semi-Sweet Chocolate Morsels", "1 cup chopped nuts"]
+  },
+  {
+    "title": "Pizza Casserole",
+    "imgUrl": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F639577.jpg",
+    "description": "This recipe takes all the good things we love on pizza and combines them with egg noodles to form a great, one-dish casserole to feed your family.",
+    "ingredients": ["2 cups uncooked egg noodles", "½ pound lean ground beef", "1 onion, chopped", "2 cloves garlic, minced", "1 green bell pepper, chopped", "1 cup sliced pepperoni sausage", "16 ounces pizza sauce", "4 tablespoons milk", "1 cup shredded mozzarella cheese"]
+  },
+  {
+    "title": "One-Pot Hamburger Adobo Dinner",
+    "imgUrl": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F2427753.jpg",
+    "description": "My ex-husband grew up on the Pacific Rim and made this dish often. I'm going by memory, but I like this simple dish, and it's easy to clean up.",
+    "ingredients": ["2 tablespoons olive oil", "1 pound lean ground beef", "1 onion, diced", "2 cloves garlic, chopped", "1 fresh jalapeno pepper, chopped", "1 cup green bell pepper, cut into thin matchsticks", "1 cup red bell pepper, cut into thin matchsticks", "2 cups matchstick-cut carrots", "1 small head broccoli, cut into florets", "¼ cup apple cider vinegar", "2 tablespoons white sugar, or more to taste", "1 dash Worcestershire sauce", "2 tablespoons soy sauce", "salt and black pepper to taste", "1 (15 ounce) can cut green beans, drained"]
+  }
+]
