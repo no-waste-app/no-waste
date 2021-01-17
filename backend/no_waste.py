@@ -33,7 +33,7 @@ class Recipe(db.Model):
             "title": self.recipe_name,
             "imgUrl": 'https://loremflickr.com/320/240/food',
             "description": self.recipe,
-            "ingredients": self.ingredients
+            "ingredients": self.ingredients.split(',')
         }
 
 
