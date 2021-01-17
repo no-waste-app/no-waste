@@ -25,14 +25,15 @@ class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_name = db.Column(db.String(255))
     recipe = db.Column(db.Text)
+    ingredients = db.Column(db.Text)
 
     @property
     def serialize(self):
         return {
             "title": self.recipe_name,
-            "imgUrl": None,
+            "imgUrl": 'https://loremflickr.com/320/240/food',
             "description": self.recipe,
-            "ingredients": ["Czekolada", "Chleb"]
+            "ingredients": self.ingredients
         }
 
 
@@ -46,21 +47,16 @@ class Product(db.Model):
 db.create_all()
 
 if Recipe.query.count() == 0:
-    # insert initial state
-    Recipe.query.delete()
-    Product.query.delete()
-    recipe = Recipe(id=1, recipe_name="Kielbasa", recipe="Przepis na kielbase")
-    recipe2 = Recipe(id=2, recipe_name="Chleb", recipe="Przepis na chleb")
-    recipe3 = Recipe(id=3, recipe_name="Piwo", recipe="Przepis na piwo")
-    product = Product(id=1, product_name="Ziemniak")
-    product1 = Product(id=2, product_name="Kielbasa")
-    product2 = Product(id=3, product_name="Pomidor")
-    db.session.add(recipe)
-    db.session.add(recipe2)
-    db.session.add(recipe3)
-    db.session.add(product)
-    db.session.add(product1)
-    db.session.add(product2)
+    recipes = [
+        Recipe(id=1, recipe_name="Kielbasa", recipe="Przepis na kielbase", ingredients="Kielbasa, Chleb, Ketchup"),
+        Recipe(id=2, recipe_name="Chleb", recipe="Przepis na chleb", ingredients="Drzdze, maka, olej"),
+        Recipe(id=3, recipe_name="Piwo", recipe="Przepis na piwo", ingredients="drozdze, chmiel"),
+        Product(id=1, product_name="Ziemniak"),
+        Product(id=2, product_name="Kielbasa"),
+        Product(id=3, product_name="Pomidor"),
+    ]
+
+    db.session.add_all(recipes)
     db.session.commit()
 
 
@@ -75,12 +71,10 @@ def recipelist():
 def recipe(recipe_id: int):
     recipe = Recipe.query.get_or_404(recipe_id)  # get elem by id
 
-    return jsonify(
-        {"id": recipe.id, "recipe_name": recipe.recipe_name, "recipe": recipe.recipe, }
-    )
+    return jsonify(recipe.serialize)
 
 # get list of products
-@app.route("/product")
+@app.route("/products")
 def producs():
     return jsonify([products.product_name for products in Product.query.all() if request.args.get("q").lower() in products.product_name.lower()])
 
