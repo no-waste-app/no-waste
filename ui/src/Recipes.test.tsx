@@ -17,18 +17,24 @@ describe("Recipes", () => {
     );
 
     await waitForElementToBeRemoved(() => screen.getByText(/^Loading/));
-    const linkElement = screen.getByText(/Some recipe/i);
-    expect(linkElement).toBeInTheDocument();
 
-    // await userEvent.type(screen.getByLabelText(/username/i), "johnUser");
-    //
-    // userEvent.click(screen.getByRole("button", { name: /submit/i }));
-    //
-    // expect(
-    //   await screen.findByText("f79e82e8-c34a-4dc7-a49e-9fadc0979fda")
-    // ).toBeInTheDocument();
-    // expect(await screen.findByText("John")).toBeInTheDocument();
-    // expect(await screen.findByText("Maverick")).toBeInTheDocument();
+    expect(screen.getByText(/Spaghetti/i)).toBeInTheDocument();
+    expect(screen.getByText(/Grilled chicken/i)).toBeInTheDocument();
+  });
+
+  it("should display filtered recipes", async () => {
+    render(
+      <MemoryRouter
+        initialEntries={[{ pathname: "/recipes", search: "?q=tomatoes" }]}
+      >
+        <Recipes />
+      </MemoryRouter>
+    );
+
+    await waitForElementToBeRemoved(() => screen.getByText(/^Loading/));
+
+    expect(screen.getByText(/Spaghetti/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Grilled chicken/i)).toBeNull();
   });
 
   it("should display human readable error message in case of server error", async () => {

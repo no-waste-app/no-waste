@@ -15,15 +15,20 @@ export function Recipes(): JSX.Element {
   const [recipes, setRecipes] = useState<Service<RecipesModel[]>>({
     status: "init",
   });
+  let queryStr = "";
 
-  if (query.get("q")) {
-    // For now just log - real backend needed
-    console.log(query.get("q"));
+  if (query.getAll("q")) {
+    queryStr =
+      "?" +
+      query
+        .getAll("q")
+        .map((p) => `q=${p}`)
+        .join("&");
   }
 
   useEffect(() => {
     async function fetchRecipes() {
-      const response = await fetch(`/api/recipes`);
+      const response = await fetch(`/api/recipes${queryStr}`);
       if (response.ok) {
         const fetchedData = await response.json();
 
