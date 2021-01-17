@@ -17,7 +17,7 @@ interface RecipesSchema {
 }
 
 const Products = readJSON<string[]>("./data/products.json");
-const Recipes = readJSON<RecipesSchema>("./data/recipes.json");
+const Recipes = readJSON<RecipesSchema[]>("./data/recipes.json");
 
 app.get("/api/products", async (req, res) => {
   if (!("q" in req.query)) {
@@ -36,7 +36,21 @@ app.get("/api/products", async (req, res) => {
 });
 
 app.get("/api/recipes", async (req, res) => {
-  res.json(await Recipes);
+  let recipes = await Recipes;
+
+  if ("q" in req.query) {
+    const query = (req.query["q"] as string).split(";");
+
+    recipes = recipes.filter((recipe: RecipesSchema) =>
+      recipe.ingredients
+        .flatMap((ingredient: string) =>
+          query.map((q: string) => ingredient.includes(q))
+        )
+        .reduce((acc: boolean, val: boolean) => acc || val)
+    );
+  }
+
+  res.json(recipes);
 });
 
 app.listen(port, () => {
