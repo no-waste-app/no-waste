@@ -39,7 +39,16 @@ app.get("/api/recipes", async (req, res) => {
   let recipes = await Recipes;
 
   if ("q" in req.query) {
-    const query = (req.query["q"] as string).split(";");
+    let query: string[];
+    if (typeof req.query["q"] === "string") {
+      query = (req.query["q"] as string).split(";");
+    } else if (req.query["q"] instanceof Array) {
+      query = req.query["q"] as string[];
+    } else {
+      res.status(400);
+      res.send("Unsupported query format");
+      return;
+    }
 
     recipes = recipes.filter((recipe: RecipesSchema) =>
       recipe.ingredients
