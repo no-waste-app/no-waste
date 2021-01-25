@@ -10,7 +10,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app.config["SECRET_KEY"] = "hard to guess string"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(
-    basedir, "data.sqlite"
+    basedir, "../data.sqlite"
 )
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -33,7 +33,7 @@ class Recipe(db.Model):
             "title": self.recipe_name,
             "imgUrl": 'https://loremflickr.com/320/240/food',
             "description": self.recipe,
-            "ingredients": self.ingredients.split(',')
+            "ingredients": [x.strip() for x in self.ingredients.split(',')]
         }
 
 
@@ -75,7 +75,7 @@ def recipe(recipe_id: int):
 
 # get list of products
 @app.route("/products")
-def producs():
+def product():
     return jsonify([products.product_name for products in Product.query.all() if request.args.get("q").lower() in products.product_name.lower()])
 
 def main():
