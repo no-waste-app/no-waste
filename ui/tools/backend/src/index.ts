@@ -17,7 +17,7 @@ interface RecipesSchema {
 }
 
 const Products = readJSON<string[]>("./data/products.json");
-const Recipes = readJSON<RecipesSchema>("./data/recipes.json");
+const Recipes = readJSON<RecipesSchema[]>("./data/recipes.json");
 
 app.get("/api/products", async (req, res) => {
   if (!("q" in req.query)) {
@@ -36,7 +36,30 @@ app.get("/api/products", async (req, res) => {
 });
 
 app.get("/api/recipes", async (req, res) => {
-  res.json(await Recipes);
+  let recipes = await Recipes;
+
+  if ("q" in req.query) {
+    let query: string[];
+    if (typeof req.query["q"] === "string") {
+      query = (req.query["q"] as string).split(";");
+    } else if (req.query["q"] instanceof Array) {
+      query = req.query["q"] as string[];
+    } else {
+      res.status(400);
+      res.send("Unsupported query format");
+      return;
+    }
+
+    recipes = recipes.filter((recipe: RecipesSchema) =>
+      recipe.ingredients
+        .flatMap((ingredient: string) =>
+          query.map((q: string) => ingredient.includes(q))
+        )
+        .reduce((accumulator: boolean, val: boolean) => accumulator || val)
+    );
+  }
+
+  res.json(recipes);
 });
 
 app.listen(port, () => {

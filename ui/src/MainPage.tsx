@@ -15,6 +15,9 @@ export function MainPage(): JSX.Element {
     setProducts([...products, value]);
   };
 
+  const query =
+    products.length > 0 ? "?" + products.map((p) => `q=${p}`).join("&") : "";
+
   return (
     <>
       <Title style={{ textAlign: "center" }}>No Waste</Title>
@@ -26,7 +29,7 @@ export function MainPage(): JSX.Element {
             className={"button-search-recipes"}
             type="primary"
             icon={<SearchOutlined />}
-            onClick={() => history.replace("/recipes")}
+            onClick={() => history.replace("/recipes" + query)}
           >
             Search
           </Button>
