@@ -55,7 +55,7 @@ app.get("/api/recipes", async (req, res) => {
         .flatMap((ingredient: string) =>
           query.map((q: string) => ingredient.includes(q))
         )
-        .reduce((acc: boolean, val: boolean) => acc || val)
+        .reduce((accumulator: boolean, val: boolean) => accumulator || val)
     );
   }
 
