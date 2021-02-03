@@ -1,11 +1,26 @@
 import scrapy
+import json
+from pydispatch import dispatcher
+from scrapy import signals
 from scrapy.http.request import Request
+
+with open('nowastecrawler/ingredients_dict.json') as f:
+    ingredient_dict = json.load(f)
+
 
 class RecipeSpider(scrapy.Spider):
     name = "recipes"
     start_urls = [
         'https://www.przepisy.pl/skladniki/kasza'
     ]
+
+    def __init__(self):
+        dispatcher.connect(self.spider_closed, signals.spider_closed)
+
+
+    def spider_closed(self):
+        with open('nowastecrawler/ingredients_dict_new.json', "w") as f:
+            json.dump(ingredient_dict, f, ensure_ascii=False)
 
     def parse(self, response):
 
@@ -30,18 +45,28 @@ class RecipeSpider(scrapy.Spider):
             ingredients_list = []
             for ingredient in ingredients:
                 ingredient_name = ingredient.css('::text').get()
+                ingredient_name = ingredient_name.strip().lower()
+                #  change name to singular
+                if ingredient_name in ingredient_dict:
+                    ingredient_name = ingredient_dict[ingredient_name]
+                else:
+                    ingredient_dict[ingredient_name] = None  # missing new value
                 ingredient_quantity = ingredient.css('.quantity span::text').get()
                 ingredients_list.append({
                     'ingredient_name': ingredient_name,
-                    'ingredient_quantity': ingredient_quantity
+                    'ingredient_quantity': ingredient_quantity.strip()
                 })
             steps = response.css('div.step-info')
             step_list = []
             for step in steps:
                 step_list.append(step.css('p::text').get())
-            yield{
+            yield {
                 'dish_name': dish_name,
                 'dish_size': dish_size,
                 'steps': ' '.join(step_list),
                 'ingredients': ingredients_list
             }
+
+
+
+
