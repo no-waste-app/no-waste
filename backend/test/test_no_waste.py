@@ -28,7 +28,6 @@ def test_recipe():
 
 
 def test_product(client):
-    request = 'm'
     response = client.get("/products?q=Pomidor").json
     assert len(response) == 1
     assert response[0] == "Pomidor"
