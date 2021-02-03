@@ -4,6 +4,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 import { server } from "./mocks/server";
+import "./i18n/config";
 
 global.matchMedia =
   global.matchMedia ||

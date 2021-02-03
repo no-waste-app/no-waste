@@ -4,10 +4,14 @@ import { Route, Switch, Link, BrowserRouter as Router } from "react-router-dom";
 import { MainPage } from "./MainPage";
 import { Recipes } from "./Recipes";
 import { About } from "./About";
+import { PageNotFound } from "./PageNotFound";
+import { useTranslation } from "react-i18next";
 
 const { Header, Footer, Content } = Layout;
 
 function App(): JSX.Element {
+  const { t } = useTranslation();
+
   return (
     <Layout className={"App"}>
       <Router>
@@ -18,13 +22,13 @@ function App(): JSX.Element {
             defaultSelectedKeys={["home"]} //TODO(JN): This is not always true.
           >
             <Menu.Item key="home">
-              <Link to={"/"}>Home</Link>
+              <Link to={"/"}>{t("navigation.home")}</Link>
             </Menu.Item>
             <Menu.Item key="recipes">
-              <Link to={"/recipes"}>Recipes</Link>
+              <Link to={"/recipes"}>{t("navigation.recipes")}</Link>
             </Menu.Item>
             <Menu.Item key="about">
-              <Link to={"/about"}>About</Link>
+              <Link to={"/about"}>{t("navigation.about")}</Link>
             </Menu.Item>
           </Menu>
         </Header>
@@ -40,11 +44,11 @@ function App(): JSX.Element {
               <About />
             </Route>
             <Route path="*">
-              <div>404 - Not found</div>
+              <PageNotFound />
             </Route>
           </Switch>
         </Content>
-        <Footer className={"App-footer"}>Built by Johny Inc.</Footer>
+        <Footer className={"App-footer"}>{t("footer.builtBy")}</Footer>
       </Router>
     </Layout>
   );

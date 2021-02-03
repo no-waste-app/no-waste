@@ -1,0 +1,25 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "failedToLoadTryLater": "Daten konnten nicht geladen werden - versuchen Sie es später erneut",
+    "noData": "Keine Daten",
+    "notFound": "404 - Nicht gefunden"
+  },
+  "navigation": {
+    "home": "Hauptseite",
+    "recipes": "Rezepturen",
+    "about": "Über"
+  },
+  "footer": {
+    "builtBy": "Erbaut von Johny Inc."
+  },
+  "aboutPage": {
+    "about": "Über uns"
+  },
+  "completeProducts": {
+    "whatDoYouHaveInYourFridge": "Was hast du in deinem Kühlschrank?"
+  },
+  "mainPage": {
+    "searchButton": "Suche"
+  }
+}

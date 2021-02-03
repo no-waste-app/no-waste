@@ -4,10 +4,13 @@ import { ProductsList } from "./ProductsList";
 import { Button, Typography } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const { Title } = Typography;
 
 export function MainPage(): JSX.Element {
+  const { t } = useTranslation();
+
   const history = useHistory();
   const [products, setProducts] = useState([] as string[]);
 
@@ -31,7 +34,7 @@ export function MainPage(): JSX.Element {
             icon={<SearchOutlined />}
             onClick={() => history.replace("/recipes" + query)}
           >
-            Search
+            {t("mainPage.searchButton")}
           </Button>
         </>
       )}
