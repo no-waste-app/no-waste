@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { SelectProps } from "antd/es/select";
 import { AutoComplete, Input } from "antd";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   onSelect: (value: string) => void;
 }
 
 export const CompleteProducts: React.FC<Props> = ({ onSelect }: Props) => {
+  const { t } = useTranslation();
+
   const [options, setOptions] = useState<
     SelectProps<Record<string, unknown>>["options"]
   >([]);
@@ -25,7 +28,7 @@ export const CompleteProducts: React.FC<Props> = ({ onSelect }: Props) => {
     >
       <Input.Search
         size="large"
-        placeholder="What do you have in you fridge?"
+        placeholder={t("completeProducts.whatDoYouHaveInYourFridge")}
         enterButton
       />
     </AutoComplete>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Divider } from "antd";
 import { RecipesModel } from "./models";
 import { Service } from "./service";
+import { useTranslation } from "react-i18next";
 
 // A custom hook that builds on useLocation to parse
 // the query string for you.
@@ -11,6 +12,7 @@ function useQuery() {
 }
 
 export function Recipes(): JSX.Element {
+  const { t } = useTranslation();
   const query = useQuery();
   const [recipes, setRecipes] = useState<Service<RecipesModel[]>>({
     status: "init",
@@ -47,7 +49,7 @@ export function Recipes(): JSX.Element {
     <>
       {recipes.status == "init" && (
         <div>
-          <h3>Loading...</h3>
+          <h3>{t("common.loading")}</h3>
         </div>
       )}
       {recipes.status == "loaded" && recipes.payload.length > 0 ? (
@@ -64,11 +66,11 @@ export function Recipes(): JSX.Element {
         ))
       ) : (
         <div>
-          <h3>No data</h3>
+          <h3>{t("common.noData")}</h3>
         </div>
       )}
       {recipes.status == "error" && (
-        <div>Failed to load data - try again later</div>
+        <div>{t("common.failedToLoadTryLater")}</div>
       )}
     </>
   );

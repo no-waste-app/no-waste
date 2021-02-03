@@ -1,0 +1,25 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "failedToLoadTryLater": "Failed to load data - try again later",
+    "noData": "No data",
+    "notFound": "404 - Not found"
+  },
+  "navigation": {
+    "home": "Home",
+    "recipes": "Recipes",
+    "about": "About"
+  },
+  "footer": {
+    "builtBy": "Built by Johny Inc."
+  },
+  "aboutPage": {
+    "about": "About"
+  },
+  "completeProducts": {
+    "whatDoYouHaveInYourFridge": "What do you have in you fridge?"
+  },
+  "mainPage": {
+    "searchButton": "Search"
+  }
+}
