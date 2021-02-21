@@ -4,9 +4,8 @@ from pydispatch import dispatcher
 from scrapy import signals
 from scrapy.http.request import Request
 
-with open('nowastecrawler/ingredients_dict.json') as f:
-    ingredient_dict = json.load(f)
-
+#  list of ingredients
+ingredient_list = []
 
 class RecipeSpider(scrapy.Spider):
     name = "recipes"
@@ -19,8 +18,8 @@ class RecipeSpider(scrapy.Spider):
 
 
     def spider_closed(self):
-        with open('nowastecrawler/ingredients_dict_new.json', "w") as f:
-            json.dump(ingredient_dict, f, ensure_ascii=False)
+        with open('ingredients_dict.json', "w") as f:
+            json.dump(ingredient_list, f, ensure_ascii=False)
 
     def parse(self, response):
 
@@ -47,10 +46,8 @@ class RecipeSpider(scrapy.Spider):
                 ingredient_name = ingredient.css('::text').get()
                 ingredient_name = ingredient_name.strip().lower()
                 #  change name to singular
-                if ingredient_name in ingredient_dict:
-                    ingredient_name = ingredient_dict[ingredient_name]
-                else:
-                    ingredient_dict[ingredient_name] = None  # missing new value
+                if ingredient_name not in ingredient_list:
+                    ingredient_list.append(ingredient_name)  # missing new value
                 ingredient_quantity = ingredient.css('.quantity span::text').get()
                 ingredients_list.append({
                     'ingredient_name': ingredient_name,
@@ -66,7 +63,3 @@ class RecipeSpider(scrapy.Spider):
                 'steps': ' '.join(step_list),
                 'ingredients': ingredients_list
             }
-
-
-
-
