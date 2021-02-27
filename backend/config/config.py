@@ -1,7 +1,14 @@
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 class Config(object):
     DEBUG = False
     TESTING = False
-    MONGO_URI = "mongodb://localhost:27017/RecipeDB"
+    MONGO_ADRESS = os.getenv("MONGO_ADRESS")
+    MONGO_DB = os.getenv("MONGO_DB")
+    MONGO_URI = "mongodb://{}/{}".format(MONGO_ADRESS, MONGO_DB)
+
 
 
 class ProductionConfig(Config):

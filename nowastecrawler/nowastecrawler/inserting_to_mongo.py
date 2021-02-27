@@ -1,14 +1,16 @@
-import pymongo  # biblioteka mongo
-import pandas as pd  # python -m pip install pandas
+import pymongo  # mongo database
 import json
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-DATABASE_HOST = "localhost"
-DATABASE_PORT = 27017
+DATABASE_HOST = os.getenv("DATABASE_HOST")
+DATABASE_PORT = os.getenv("DATABASE_PORT")
 
 
 def main():
     #  local db
-    client = pymongo.MongoClient(DATABASE_HOST, DATABASE_PORT)  # lokalne mongo
+    client = pymongo.MongoClient(DATABASE_HOST, int(DATABASE_PORT))  # local mongo database
 
     db = client.RecipeDB
 
@@ -17,8 +19,9 @@ def main():
     collection_name = db["recipes"]  # recipes collection
 
     if collection_name.estimated_document_count() == 0:
-        records = pd.read_json('../recipes.json')
-        collection_name.insert_many(records.to_dict('records'))
+        with open('../recipes.json') as file:
+            collection_name.insert_many([{'recipe': x} for x in json.load(file)]) #  adding recipes
+        pass
 
     #  test first random element
     print(collection_name.find_one())
@@ -33,6 +36,7 @@ def main():
 
     #  test first random element
     print(collection_name.find_one())
+
 
 
 if __name__ == "__main__":
