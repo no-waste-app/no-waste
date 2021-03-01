@@ -8,6 +8,10 @@ build:
     context: ui/tools/backend
     docker:
       dockerfile: Dockerfile
+  - image: ghcr.io/no-waste-app/no-waste/backend
+    context: backend
+    docker:
+      dockerfile: Dockerfile
   - image: ghcr.io/no-waste-app/no-waste/ui
     context: ui
     docker:
@@ -16,4 +20,5 @@ deploy:
   kubectl:
     manifests:
     - ui/k8s/deployment.yaml
+    - backend/k8s/deployment.yaml
     - ui/tools/backend/k8s/deployment.yaml
