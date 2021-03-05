@@ -2,28 +2,33 @@ import os
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from bson.json_util import dumps, loads
+from application.service import NoWasteService
 
+# main Flask module
 app = Flask(__name__)
 app.config.from_object("config.config.ProductionConfig")
-mongo = PyMongo(app)
-# main Flask module
+
+service: NoWasteService
+
 
 # all recipes in database
 @app.route("/recipes")
 def recipelist():
-    recipesmb = mongo.db.recipes.find()
-    return dumps(recipesmb, ensure_ascii=False)
-
+    return dumps(service.recipe_list(), ensure_ascii=False)
 
 
 # get list of products
 @app.route("/products")
-def producs():
-    ingredient = request.args.get("q").lower()
-    ingredientsmb = mongo.db.ingredients.find({"ingredient_name": {'$regex': ingredient}})
-    return dumps(ingredientsmb, ensure_ascii=False)
+def products():
+    query = request.args.get("q").lower()
+    return dumps(service.products(query), ensure_ascii=False)
+
 
 def main():
+    mongo = PyMongo(app)
+    from application.service import NoWasteService
+    global service
+    service = NoWasteService(mongo)
     app.run()
 
 
