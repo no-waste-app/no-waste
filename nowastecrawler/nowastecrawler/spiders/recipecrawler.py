@@ -50,16 +50,18 @@ class RecipeSpider(scrapy.Spider):
                     ingredient_list.append(ingredient_name)  # missing new value
                 ingredient_quantity = ingredient.css('.quantity span::text').get()
                 ingredients_list.append({
-                    'ingredient_name': ingredient_name,
-                    'ingredient_quantity': ingredient_quantity.strip()
+                    'name': ingredient_name,
+                    'quantity': ingredient_quantity.strip()
                 })
             steps = response.css('div.step-info')
             step_list = []
             for step in steps:
                 step_list.append(step.css('p::text').get())
             yield {
-                'dish_name': dish_name,
-                'dish_size': dish_size,
-                'steps': ' '.join(step_list),
-                'ingredients': ingredients_list
+                'title': dish_name,
+                'servings': dish_size,
+                'directions': ' '.join(step_list),
+                'ingredients': ingredients_list,
+                'description': "",
+                'imgUrl': ""
             }
