@@ -22,3 +22,4 @@ python-dotenv==0.15.0
 toml==0.10.2
 webargs==7.0.1
 Werkzeug==1.0.1
+flask-smorest

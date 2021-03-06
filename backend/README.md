@@ -1,5 +1,9 @@
-## przygotowanie srodowiska
-Wymagane pakiety w requirements.txt
+## Setup
+```
+pip install -r requierments.txt
+```
 
-## uruchomienie aplikacji
+## Run 
+```
 FLASK_APP=no_waste.py flask run
+```
