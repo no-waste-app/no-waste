@@ -37,10 +37,15 @@ jobs:
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
       - name: Build and Deploy
-        uses: hiberbee/github-action-skaffold@latest
+#        uses: hiberbee/github-action-skaffold@latest
+#        with:
+#          command: run
+#          default-repo: ghcr.io
+#          kubeconfig: /home/runner/.kube/config
+        uses: volesen/setup-skaffold@v1.1
         with:
-          command: run
-          default-repo: ghcr.io
-          kubeconfig: /home/runner/.kube/config
+          version: 1.20.0
+        run: skaffold run
+
       - name: Check deployed app
         run: kubectl get deployments
