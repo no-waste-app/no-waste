@@ -1,5 +1,9 @@
 name: Build and Deploy
 on:
+  workflow_run:
+    workflows: [ "Python application" ]
+    types:
+      - completed
   push:
     branches: [ master ]
   pull_request:
@@ -10,14 +14,14 @@ jobs:
     name: Build and Deploy Image
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Wait on tests
-        uses: lewagon/wait-on-check-action@master
-        with:
-          ref: ${{ github.ref }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
-          running-workflow-name: 'build_deploy_image'
+#      - uses: actions/checkout@v2
+#      - name: Wait on tests
+#        uses: lewagon/wait-on-check-action@master
+#        with:
+#          ref: ${{ github.ref }}
+#          repo-token: ${{ secrets.GITHUB_TOKEN }}
+#          wait-interval: 10
+#          running-workflow-name: 'build_deploy_image'
 
 #       - name: Extract cache
 #         uses: actions/cache@v2
