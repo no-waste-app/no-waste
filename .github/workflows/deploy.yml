@@ -44,7 +44,7 @@ jobs:
 #          kubeconfig: /home/runner/.kube/config
         uses: volesen/setup-skaffold@v1.1
         with:
-          version: 1.20.0
+          version: 'v1.20.0'
 
       - name: Build and Deploy
         run: |
