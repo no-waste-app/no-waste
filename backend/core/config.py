@@ -7,7 +7,7 @@ load_dotenv()
 class Config:
     DEBUG = False
     TESTING = False
-    MONGO_ADDRESS = os.getenv("MONGO_ADRESS")
+    MONGO_ADDRESS = os.getenv("MONGO_ADDRESS")
     MONGO_DB = os.getenv("MONGO_DB")
     MONGO_URI = "mongodb://{}/{}".format(MONGO_ADDRESS, MONGO_DB)
 
