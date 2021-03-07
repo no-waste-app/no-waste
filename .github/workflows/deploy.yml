@@ -40,6 +40,7 @@ jobs:
         uses: hiberbee/github-action-skaffold@latest
         with:
           command: run
+          default-repo: ghcr.io
           kubeconfig: /home/runner/.kube/config
       - name: Check deployed app
         run: kubectl get deployments
