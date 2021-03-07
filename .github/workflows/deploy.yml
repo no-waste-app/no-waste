@@ -36,7 +36,7 @@ jobs:
         shell: bash
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      - name: Build and Deploy
+      - name: Install skaffold
 #        uses: hiberbee/github-action-skaffold@latest
 #        with:
 #          command: run
@@ -45,7 +45,11 @@ jobs:
         uses: volesen/setup-skaffold@v1.1
         with:
           version: 1.20.0
-        run: skaffold run
+
+      - name: Build and Deploy
+        run: |
+          set -x
+          skaffold run
 
       - name: Check deployed app
         run: kubectl get deployments
