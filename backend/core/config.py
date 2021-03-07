@@ -11,7 +11,7 @@ class Config:
     MONGO_DB = os.getenv("MONGO_DB")
     MONGO_URI = "mongodb://{}/{}".format(MONGO_ADDRESS, MONGO_DB)
 
-    API_TITLE = "My API"
+    API_TITLE = "No Waste"
     API_VERSION = "v1"
     OPENAPI_VERSION = "3.0.2"
     OPENAPI_JSON_PATH = "api-spec.json"
