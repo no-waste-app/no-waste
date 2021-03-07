@@ -1,14 +1,15 @@
 name: Build and Deploy
 on:
   workflow_run:
-    workflows: [ "Python application" ]
+    workflows: ["Python application"]
+    branches: [master, "jn/skaffold-deploy"]
     types:
       - completed
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-    
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
+
 jobs:
   build_deploy_image:
     name: Build and Deploy Image
