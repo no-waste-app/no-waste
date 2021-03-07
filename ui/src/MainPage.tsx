@@ -23,7 +23,7 @@ export function MainPage(): JSX.Element {
 
   return (
     <>
-      <Title style={{ textAlign: "center" }}>No Waste</Title>
+      <Title style={{ textAlign: "center" }}>{t("mainPage.title")}</Title>
       <CompleteProducts onSelect={onSelect} />
       {products.length > 0 && (
         <>

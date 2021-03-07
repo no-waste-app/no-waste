@@ -9,10 +9,18 @@
   min-height: 5vh;
   background: #ffffff;
   border-bottom: 1px solid #f0f0f0;
+  display: inline-flex;
 }
 
 .App-header-menu {
   border-bottom: 0;
+  float: left;
+  width: 95%;
+}
+
+.App-hader-right-menu {
+  border-bottom: 0;
+  float: right;
 }
 
 .App-content {
