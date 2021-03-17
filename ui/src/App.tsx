@@ -6,6 +6,7 @@ import { Recipes } from "./Recipes";
 import { About } from "./About";
 import { PageNotFound } from "./PageNotFound";
 import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./i18n/LanguageSwitcher";
 
 const { Header, Footer, Content } = Layout;
 
@@ -29,6 +30,11 @@ function App(): JSX.Element {
             </Menu.Item>
             <Menu.Item key="about">
               <Link to={"/about"}>{t("navigation.about")}</Link>
+            </Menu.Item>
+          </Menu>
+          <Menu className={"App-hader-right-menu"} mode="horizontal">
+            <Menu.Item key="language">
+              <LanguageSwitcher />
             </Menu.Item>
           </Menu>
         </Header>

@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import translationEn from "./en/translation.json";
 import translationDe from "./de/translation.json";
+import translationPl from "./pl/translation.json";
 import detector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
@@ -10,6 +11,9 @@ export const resources = {
   },
   de: {
     translation: translationDe,
+  },
+  pl: {
+    translation: translationPl,
   },
 } as const;
 

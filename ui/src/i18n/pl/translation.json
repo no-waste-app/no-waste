@@ -1,0 +1,25 @@
+{
+  "common": {
+    "loading": "Ładowanie...",
+    "failedToLoadTryLater": "Nie udało się załadować danych - spróbuj ponownie później",
+    "noData": "Brak danych",
+    "notFound": "404 - Nie znaleziono"
+  },
+  "navigation": {
+    "home": "Start",
+    "recipes": "Przepisy",
+    "about": "O nas"
+  },
+  "footer": {
+    "builtBy": "Built by Johny Inc."
+  },
+  "aboutPage": {
+    "about": "O nas"
+  },
+  "completeProducts": {
+    "whatDoYouHaveInYourFridge": "Co masz w lodówce?"
+  },
+  "mainPage": {
+    "searchButton": "Wyszukaj"
+  }
+}
