@@ -1,0 +1,43 @@
+name: Build and Deploy
+on:
+  workflow_run:
+    workflows: ["Python application", "Node.js CI"]
+    branches: [master]
+    types:
+      - completed
+
+jobs:
+  build_deploy_image:
+    name: Build and Deploy Image
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Add Kube config
+        run: |
+          mkdir -p /home/runner/.kube
+          echo "$KUBECONFIG" > /home/runner/.kube/config
+        shell: bash
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+      - name: Install skaffold
+        uses: volesen/setup-skaffold@v1.1
+        with:
+          version: 'v1.20.0'
+
+      - name: Build and Deploy
+        run: |
+          set -x
+          skaffold run
+
+      - name: Check deployed app
+        run: kubectl get deployments
