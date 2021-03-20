@@ -15,7 +15,7 @@ def main():
         DATABASE_HOST, int(DATABASE_PORT)
     )  # local mongo database
 
-    db = client.RecipeDB
+    db = client.NoWaste
 
     # RECIPES
 
@@ -38,7 +38,7 @@ def main():
     if collection_name.estimated_document_count() == 0:
         with open("../ingredients_dict.json") as file:
             collection_name.insert_many(
-                [{"ingredient_name": x} for x in json.load(file)]
+                [{"name": x} for x in json.load(file)]
             )  #  adding ingredients to collection
 
     #  test first random element

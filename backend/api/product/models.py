@@ -6,4 +6,4 @@ class ProductQueryArgs(ma.Schema):
 
 
 class Product(ma.Schema):
-    ingredient_name = ma.fields.String(required=True)
+    name = ma.fields.String(required=True)

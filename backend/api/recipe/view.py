@@ -15,10 +15,15 @@ class Recipes(MethodView):
     def get(self, args: RecipeQueryArgsSchema):
         """List recipes"""
         limit = args["limit"]
-        if limit > 10:
-            limit = 10
+        offset = args["offset"]
+        short = args["short"]
+        product = args["q"]
+        q = {"$and": [{"recipe.ingredients.name": v} for v in product]} if product else {}
 
-        recipesmb = mongo.db.recipes.find(limit=limit)
+        if short:
+            recipesmb = mongo.db.recipes.find(q, {"_id": 1, "recipe.title": 1}, limit=limit, skip=offset)
+        else:
+            recipesmb = mongo.db.recipes.find(q, limit=limit, skip=offset)
         all_recipes = (*recipesmb,)
         all_recipes = [z["recipe"] for z in all_recipes]
         return Recipe(many=True).load(all_recipes)
