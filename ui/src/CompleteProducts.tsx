@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SelectProps } from "antd/es/select";
 import { AutoComplete, Input } from "antd";
 import { useTranslation } from "react-i18next";
+import { Api, Product } from "./api/nowaste";
 
 interface Props {
   onSelect: (value: string) => void;
@@ -36,13 +37,13 @@ export const CompleteProducts: React.FC<Props> = ({ onSelect }: Props) => {
 };
 
 const searchResult = async (query: string) => {
-  const result = await fetch(`/api/products?q=${query}`);
-  const resultJson = await result.json();
+  const api = new Api();
+  const res = await api.api.productsList({ q: query });
 
-  return (resultJson as string[]).map((item: string) => {
+  return res.data.map((item: Product) => {
     return {
-      value: item,
-      label: <div role={"result"}>{item}</div>,
+      value: item.name,
+      label: <div role={"result"}>{item.name}</div>,
     };
   });
 };
