@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { CompleteProducts } from "./CompleteProducts";
 
 describe("Search product", () => {
-  it("should allow a user to log in", async () => {
+  it("should allow a user to search using products", async () => {
     render(
       <CompleteProducts
         onSelect={function () {
