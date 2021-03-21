@@ -21,7 +21,7 @@ class Products(MethodView):
         ingredient = args["q"].lower()
 
         ingredientsmb = mongo.db.ingredients.find(
-            {"ingredient_name": {"$regex": ingredient}}
+             {"name": {"$regex": ingredient}}
         )
 
         all_ingredients = (*ingredientsmb,)
