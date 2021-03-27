@@ -27,7 +27,7 @@ function RecipeTile(props: { recipe: Recipe }) {
 }
 
 export function Recipes(): JSX.Element {
-  const api = new Api();
+  const nwClient = new Api();
   const { t } = useTranslation();
   const urlQuery = useQuery();
   const [recipes, setRecipes] = useState<Service<Recipe[]>>({
@@ -42,7 +42,7 @@ export function Recipes(): JSX.Element {
 
   useEffect(() => {
     async function fetchRecipes() {
-      const response = await api.api.recipesList(recipesQuery);
+      const response = await nwClient.api.recipesList(recipesQuery);
       if (response.ok) {
         setRecipes({ status: "loaded", payload: response.data });
       } else {

@@ -10,7 +10,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.tsx",
     "fmt": "prettier --write src/**/*.{ts,tsx}",
-    "openapi-api": "swagger-typescript-api -p ../api-spec.json -o ./src/api -n nowaste.ts"
+    "openapi-api": "swagger-typescript-api --extract-request-params -p ../api-spec.json -o ./src/api -n nowaste.ts"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",

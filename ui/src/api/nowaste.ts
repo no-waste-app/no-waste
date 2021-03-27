@@ -10,28 +10,28 @@
  */
 
 export interface Ingredients {
-  quantity?: string;
-  name?: string;
+  name: string;
+  quantity: string;
 }
 
 export interface Recipe {
-  servings?: string;
-  ingredients?: Ingredients[];
-  directions?: string;
-  title: string;
   imgUrl?: string | null;
+  ingredients: Ingredients[];
+  title: string;
+  servings?: string;
   description?: string | null;
+  directions: string;
 }
 
 export interface Error {
   /** Error name */
   status?: string;
 
-  /** Error message */
-  message?: string;
-
   /** Errors */
   errors?: object;
+
+  /** Error message */
+  message?: string;
 
   /** Error code */
   code?: number;
@@ -43,9 +43,9 @@ export interface Product {
 
 export interface RecipesListParams {
   offset?: number;
-  limit?: number;
   q?: string[];
   short?: number;
+  limit?: number;
 }
 
 export interface ProductsListParams {

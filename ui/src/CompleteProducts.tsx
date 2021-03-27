@@ -37,8 +37,8 @@ export const CompleteProducts: React.FC<Props> = ({ onSelect }: Props) => {
 };
 
 const searchResult = async (query: string) => {
-  const api = new Api();
-  const res = await api.api.productsList({ q: query });
+  const nwClient = new Api();
+  const res = await nwClient.api.productsList({ q: query });
 
   return res.data.map((item: Product) => {
     return {

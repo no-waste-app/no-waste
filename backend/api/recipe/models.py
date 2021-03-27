@@ -2,15 +2,15 @@ import marshmallow as ma
 
 
 class Ingredients(ma.Schema):
-    name = ma.fields.String()
-    quantity = ma.fields.String()
+    name = ma.fields.String(required=True)
+    quantity = ma.fields.String(required=True)
 
 
 class Recipe(ma.Schema):
     title = ma.fields.String(required=True)
     servings = ma.fields.String()
-    directions = ma.fields.String()
-    ingredients = ma.fields.Nested(Ingredients, many=True)
+    directions = ma.fields.String(required=True)
+    ingredients = ma.fields.Nested(Ingredients, many=True, required=True)
     description = ma.fields.String(missing=None)
     imgUrl = ma.fields.String(missing=None)
 
