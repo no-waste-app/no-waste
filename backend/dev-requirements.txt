@@ -29,13 +29,15 @@ flask==1.1.2
     #   -r requirements.txt
     #   flask-pymongo
     #   flask-smorest
+gunicorn==20.0.4
+    # via -r requirements.txt
 iniconfig==1.1.1
     # via pytest
 itsdangerous==1.1.0
     # via
     #   -r requirements.txt
     #   flask
-jinja2==2.11.2
+jinja2==2.11.3
     # via
     #   -r requirements.txt
     #   flask
@@ -68,6 +70,8 @@ pyparsing==2.4.7
     # via packaging
 pytest==6.2.2
     # via -r dev-requirements.in
+python-dotenv==0.15.0
+    # via -r requirements.txt
 regex==2020.11.13
     # via black
 toml==0.10.2
@@ -90,3 +94,4 @@ werkzeug==1.0.1
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
+# setuptools
