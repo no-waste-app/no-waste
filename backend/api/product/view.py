@@ -20,9 +20,7 @@ class Products(MethodView):
     def get(self, args: ProductQueryArgs):
         ingredient = args["q"].lower()
 
-        ingredientsmb = mongo.db.ingredients.find(
-             {"name": {"$regex": ingredient}}
-        )
+        ingredientsmb = mongo.db.ingredients.find({"name": {"$regex": ingredient}})
 
         all_ingredients = (*ingredientsmb,)
         return Product(many=True, unknown=ma.EXCLUDE).load(all_ingredients)

@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Divider } from "antd";
-import { RecipesModel } from "./models";
 import { Service } from "./service";
 import { useTranslation } from "react-i18next";
+import { Api, Recipe, RecipesListParams } from "./api/nowaste";
 
 // A custom hook that builds on useLocation to parse
 // the query string for you.
@@ -11,30 +11,40 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
+function RecipeTile(props: { recipe: Recipe }) {
+  return (
+    <>
+      <h4>{props.recipe.title}</h4>
+      {props.recipe.imgUrl && (
+        <img
+          src={props.recipe.imgUrl}
+          style={{ width: "100px" }}
+          alt={"recipe photo"}
+        />
+      )}
+    </>
+  );
+}
+
 export function Recipes(): JSX.Element {
+  const nwClient = new Api();
   const { t } = useTranslation();
-  const query = useQuery();
-  const [recipes, setRecipes] = useState<Service<RecipesModel[]>>({
+  const urlQuery = useQuery();
+  const [recipes, setRecipes] = useState<Service<Recipe[]>>({
     status: "init",
   });
-  let queryStr = "";
 
-  if (query.getAll("q")) {
-    queryStr =
-      "?" +
-      query
-        .getAll("q")
-        .map((p) => `q=${p}`)
-        .join("&");
+  const recipesQuery = {} as RecipesListParams;
+
+  if (urlQuery.has("q")) {
+    recipesQuery.q = urlQuery.getAll("q");
   }
 
   useEffect(() => {
     async function fetchRecipes() {
-      const response = await fetch(`/api/recipes${queryStr}`);
+      const response = await nwClient.api.recipesList(recipesQuery);
       if (response.ok) {
-        const fetchedData = await response.json();
-
-        setRecipes({ status: "loaded", payload: fetchedData });
+        setRecipes({ status: "loaded", payload: response.data });
       } else {
         setRecipes({ status: "error", error: await response.text() });
       }
@@ -55,12 +65,7 @@ export function Recipes(): JSX.Element {
       {recipes.status == "loaded" && recipes.payload.length > 0 ? (
         recipes.payload.map((recipe, idx) => (
           <div key={idx}>
-            <h4>{recipe.title}</h4>
-            <img
-              src={recipe.imgUrl}
-              style={{ width: "100px" }}
-              alt={"recipe photo"}
-            />
+            <RecipeTile recipe={recipe} />
             {idx != recipes.payload.length - 1 && <Divider />}
           </div>
         ))

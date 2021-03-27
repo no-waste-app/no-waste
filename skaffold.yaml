@@ -1,11 +1,11 @@
-apiVersion: skaffold/v2beta10
+apiVersion: skaffold/v2beta13
 kind: Config
 metadata:
   name: no-waste
 build:
   artifacts:
-  - image: ghcr.io/no-waste-app/no-waste/backend-mock
-    context: ui/tools/backend
+  - image: ghcr.io/no-waste-app/no-waste/backend
+    context: backend
     docker:
       dockerfile: Dockerfile
   - image: ghcr.io/no-waste-app/no-waste/ui
@@ -16,4 +16,8 @@ deploy:
   kubectl:
     manifests:
     - ui/k8s/deployment.yaml
-    - ui/tools/backend/k8s/deployment.yaml
+    - backend/k8s/deployment.yaml
+  helm:
+    releases:
+    - name: mongodb
+      remoteChart: bitnami/mongodb

@@ -32,7 +32,7 @@ function App(): JSX.Element {
               <Link to={"/about"}>{t("navigation.about")}</Link>
             </Menu.Item>
           </Menu>
-          <Menu className={"App-hader-right-menu"} mode="horizontal">
+          <Menu className={"App-header-right-menu"} mode="horizontal">
             <Menu.Item key="language">
               <LanguageSwitcher />
             </Menu.Item>

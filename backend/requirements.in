@@ -1,5 +1,6 @@
 Flask
 Flask-PyMongo
 flask-smorest
+gunicorn
 marshmallow
 python-dotenv

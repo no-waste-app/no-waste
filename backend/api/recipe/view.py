@@ -18,10 +18,16 @@ class Recipes(MethodView):
         offset = args["offset"]
         short = args["short"]
         product = args["q"]
-        q = {"$and": [{"recipe.ingredients.name": v} for v in product]} if product else {}
+        q = (
+            {"$and": [{"recipe.ingredients.name": v} for v in product]}
+            if product
+            else {}
+        )
 
         if short:
-            recipesmb = mongo.db.recipes.find(q, {"_id": 1, "recipe.title": 1}, limit=limit, skip=offset)
+            recipesmb = mongo.db.recipes.find(
+                q, {"_id": 1, "recipe.title": 1}, limit=limit, skip=offset
+            )
         else:
             recipesmb = mongo.db.recipes.find(q, limit=limit, skip=offset)
         all_recipes = (*recipesmb,)
