@@ -25,8 +25,15 @@ const recipes: Recipe[] = [
 ];
 
 export const handlers = [
-  rest.get<Recipe>("/api/products?q=mil", (req, res, ctx) => {
-    return res(ctx.json([{ name: "milk" }] as Product[]));
+  rest.get<Recipe>("/api/products", (req, res, ctx) => {
+    const query = req.url.searchParams;
+    const q = query.get("q");
+
+    if (q == "mil") {
+      return res(ctx.json([{ name: "milk" }] as Product[]));
+    }
+
+    return res(ctx.json([] as Product[]));
   }),
   rest.get<Recipe>("/api/recipes", (req, res, ctx) => {
     const query = req.url.searchParams.getAll("q");
