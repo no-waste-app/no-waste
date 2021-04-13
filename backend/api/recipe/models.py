@@ -15,6 +15,10 @@ class Recipe(ma.Schema):
     imgUrl = ma.fields.String(missing=None)
 
 
+class ShortRecipe(ma.Schema):
+    title = ma.fields.String(required=True)
+
+
 class RecipeQueryArgsSchema(ma.Schema):
     limit = ma.fields.Integer(missing=10)
     offset = ma.fields.Integer(missing=0)
