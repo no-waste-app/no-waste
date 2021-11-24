@@ -1,6 +1,6 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint
-from backend.api.recipe.models import RecipeQueryArgsSchema, Recipe
+from backend.api.recipe.models import RecipeQueryArgsSchema, Recipe, ShortRecipe
 from backend.core.db import mongo
 
 blp = Blueprint(
@@ -32,4 +32,6 @@ class Recipes(MethodView):
             recipesmb = mongo.db.recipes.find(q, limit=limit, skip=offset)
         all_recipes = (*recipesmb,)
         all_recipes = [z["recipe"] for z in all_recipes]
+        if short:
+            return ShortRecipe(many=True).load(all_recipes)
         return Recipe(many=True).load(all_recipes)
